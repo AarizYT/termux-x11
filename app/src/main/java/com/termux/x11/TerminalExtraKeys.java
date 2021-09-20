@@ -94,7 +94,11 @@ public class TerminalExtraKeys implements ExtraKeysView.IExtraKeysView {
 		metaState |= KeyEvent.META_FUNCTION_ON;
 	    }
 	    onControlCharused(act.getlorieView(), keyCode, new KeyEvent(0, 0, KeyEvent.ACTION_DOWN, keyCode, 0, metaState), ctrlDown, fnDown, shiftDown, altDown);
-	    onControlCharused(act.getlorieView(), keyCode, new KeyEvent(0, 0, KeyEvent.ACTION_UP, keyCode, 0, metaState), ctrlDown, fnDown, shiftDown, altDown);
+
+	    if (!ctrlDown | !altDown) {
+	    	onControlCharused(act.getlorieView(), keyCode, new KeyEvent(0, 0, KeyEvent.ACTION_UP, keyCode, 0, metaState), ctrlDown, fnDown, shiftDown, altDown);
+	    }
+
         } else {
             // not a control char
             key.codePoints().forEach(codePoint -> {
