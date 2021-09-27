@@ -1,5 +1,7 @@
 import android.view.ViewTreeObserver;
 import android.graphics.Rect;
+import android.widget.FrameLayout;
+import android.view.View;
 
 private class Fullscreenworkaround {
 
@@ -7,14 +9,14 @@ private class Fullscreenworkaround {
     // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
 
     public static void assistActivity (Activity activity) {
-        new AndroidBug5497Workaround(activity);
+        new Fullscreenworkaround(activity);
     }
 
     private View mChildOfContent;
     private int usableHeightPrevious;
     private FrameLayout.LayoutParams frameLayoutParams;
 
-    private AndroidBug5497Workaround(Activity activity) {
+    private Fullscreenworkaround(Activity activity) {
         FrameLayout content = (FrameLayout) activity.findViewById(android.R.id.content);
         mChildOfContent = content.getChildAt(0);
         mChildOfContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
